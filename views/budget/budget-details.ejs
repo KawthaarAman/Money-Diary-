@@ -22,6 +22,16 @@
 
         <h2>Financial Overview</h2>
 
+        <h2>Income</h2>
+
+        <a href="/income/budget/<%= budget._id %>">
+            Manage Income
+        </a>
+
+        <a href="/income/budget/<%= budget._id %>/new">
+            + Add Income
+        </a>
+
         <p>Total Income: <%= totalIncome %> BHD</p>
 
         <p>Total Obligations: <%= totalObligations %> BHD</p>
@@ -121,8 +131,6 @@
 
                                                                                         <hr>
 
-                                                                                        <a href="/budget">Back to All
-                                                                                            Budgets</a>
 
 </body>
 
