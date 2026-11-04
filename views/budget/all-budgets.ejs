@@ -28,9 +28,17 @@
                                 <%= budgets.year %>
                         </h2>
 
-                        <a href="/budget/<%= budgets._id %>">View Budget</a>
+                        <form action="/budget/<%= budgets._id %>" method="GET">
+                            <button type="submit">View Budget</button>
+                        </form>
 
-                        <a href="/budget/<%= budgets._id %>/edit">Edit</a>
+                        <br>
+
+                        <form action="/budget/<%= budgets._id %>/edit" method="GET">
+                            <button type="submit">Edit</button>
+                        </form>
+
+                        <br>
 
                         <form action="/budget/<%= budgets._id %>?_method=DELETE" method="POST">
                             <button type="submit">Delete</button>
