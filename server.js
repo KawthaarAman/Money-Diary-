@@ -32,6 +32,8 @@ const budgetRoutes = require("./routes/budget.routes.js")
 
 const incomeRoutes = require("./routes/income.routes");
 
+const obligationRoutes = require("./routes/obligation.routes");
+
 // Middleware
 
 app.use(express.static('public')) // my app will serve all static files from public folder
@@ -71,6 +73,8 @@ app.use('/', indexController)
 app.use('/budget', budgetRoutes)
 
 app.use("/income", incomeRoutes);
+
+app.use("/obligation", obligationRoutes);
 
 // connect to database and listen on Port 3000
   async function startServer() {
