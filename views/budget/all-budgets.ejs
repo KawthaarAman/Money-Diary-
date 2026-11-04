@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Budgets | Money Diary</title>
+</head>
+
+<body>
+
+    <%- include('../partials/navbar') %>
+
+        <h1>My Budgets</h1>
+
+        <% if (budgets.length===0) { %>
+
+            <p>You haven't created any budgets yet.</p>
+            <a href="/budget/new">Create your first budget</a>
+
+            <% } else { %>
+
+                <% budgets.forEach(budgets=> { %>
+
+                    <div>
+                        <h2>
+                            <%= new Date(budgets.year, budgets.month - 1).toLocaleString('en-US', { month: 'long' }) %>
+                                <%= budgets.year %>
+                        </h2>
+
+                        <a href="/budget/<%= budgets._id %>">View Budget</a>
+
+                        <a href="/budget/<%= budgets._id %>/edit">Edit</a>
+
+                        <form action="/budget/<%= budgets._id %>?_method=DELETE" method="POST">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </div>
+
+                    <hr>
+
+                    <% }) %>
+
+                        <% } %>
+
+</body>
+
+</html>
