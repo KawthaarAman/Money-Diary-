@@ -104,16 +104,51 @@ The database consists of seven main models:
 
 ## Routes
 
+### Budget Routes
+
 | Method | Route | Description |
-|---------|-------|-------------|
-| GET | / | Home page |
-| GET | /listings | List all listings |
-| GET | /listings/new | New listing form |
-| POST | /listings | Create listing |
-| GET | /listings/:id | View listing |
-| GET | /listings/:id/edit | Edit listing form |
-| PUT | /listings/:id | Update listing |
-| DELETE | /listings/:id | Delete listing |
+|---|---|---|
+| GET | `/budget/new` | New budget form |
+| POST | `/budget` | Create a new budget |
+| GET | `/budget` | Display all budgets |
+| GET | `/budget/:id` | View budget details |
+| GET | `/budget/:id/edit` | Edit budget form |
+| PUT | `/budget/:id` | Update budget |
+| DELETE | `/budget/:id` | Delete a budget |
+
+### Income Routes
+
+| Method | Route | Description |
+|---|---|---|
+| GET | `/income/budget/:budgetId/new` | New income form |
+| POST | `/income/budget/:budgetId` | Create income |
+| GET | `/income/budget/:budgetId` | Display all income for a budget |
+| GET | `/income/:id/edit` | Edit income form |
+| PUT | `/income/:id` | Update income |
+| DELETE | `/income/:id` | Delete income |
+
+### Obligation Routes
+
+| Method | Route | Description |
+|---|---|---|
+| GET | `/obligation/budget/:budgetId/new` | New obligation form |
+| POST | `/obligation/budget/:budgetId` | Create obligation |
+| GET | `/obligation/budget/:budgetId` | Display all obligations for a budget |
+| GET | `/obligation/:id/edit` | Edit obligation form |
+| PUT | `/obligation/:id` | Update obligation |
+| PUT | `/obligation/:id/status` | Mark obligation as paid or unpaid |
+| DELETE | `/obligation/:id` | Delete obligation |
+
+### Budget Category Routes
+
+| Method | Route | Description |
+|---|---|---|
+| GET | `/budget-category/budget/:budgetId/new` | New category form |
+| POST | `/budget-category/budget/:budgetId` | Create category |
+| GET | `/budget-category/budget/:budgetId` | Display all categories for a budget |
+| GET | `/budget-category/:id/edit` | Edit category form |
+| PUT | `/budget-category/:id` | Update category |
+| DELETE | `/budget-category/:id` | Delete category |
 
 ## Features
 
