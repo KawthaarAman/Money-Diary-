@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Budget Categories</title>
+    <link rel="stylesheet" href="/css/budget-category.css">
+</head>
+<body>
+
+    <main class="category-container">
+
+        <div class="page-header">
+            <div>
+                <h1>My Categories </h1>
+                <p>
+                    Organize your money for
+                    <%= new Date(budget.year, budget.month - 1)
+                        .toLocaleString("en-US", { month: "long" }) %>
+                    <%= budget.year %>
+                </p>
+            </div>
+
+            <a class="add-btn"
+               href="/budget-category/budget/<%= budget._id %>/new">
+                + Add Category
+            </a>
+        </div>
+
+        <% if (categories.length === 0) { %>
+
+            <div class="empty-state">
+                <h2>No categories yet </h2>
+                <p>Create categories to organize your monthly budget.</p>
+            </div>
+
+        <% } else { %>
+
+            <div class="category-list">
+
+                <% categories.forEach(category => { %>
+
+                    <div class="category-item">
+
+                        <div class="category-info">
+                            <h3><%= category.name %></h3>
+
+                            <p>
+                                Allocated:
+                                <strong>
+                                    <%= category.allocatedAmount.toFixed(3) %>
+                                </strong>
+                            </p>
+                        </div>
+
+                        <div class="action-buttons">
+
+                            <a
+                                class="edit-btn"
+                                href="/budget-category/<%= category._id %>/edit"
+                            >
+                                Edit
+                            </a>
+
+                            <form
+                                action="/budget-category/<%= category._id %>?_method=DELETE"
+                                method="POST"
+                                onsubmit="return confirm('Delete this category?')"
+                            >
+                                <button type="submit" class="delete-btn">
+                                    Delete
+                                </button>
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                <% }) %>
+
+                <div class="category-summary">
+                    <p>Total Allocated Amount</p>
+                    <h2><%= totalAllocated.toFixed(3) %></h2>
+                </div>
+
+            </div>
+
+        <% } %>
+
+        <a class="back-btn" href="/budget/<%= budget._id %>">
+            ← Back to Budget
+        </a>
+
+    </main>
+
+</body>
+</html>
