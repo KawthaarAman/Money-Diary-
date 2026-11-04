@@ -17,7 +17,40 @@ router.post("/", isSignedIn, async (req, res) => {
         year: req.body.year
     })
 
-    res.redirect(`/budget/${newBudget._id}`)
+    res.redirect(`/budget`)
+})
+
+// GET: Display all budgets
+router.get("/", isSignedIn, async (req, res) => {
+    const budgets = await Budget.find({
+        userId: req.session.user._id
+    })
+
+    res.render("budget/all-budgets.ejs", { budgets })
+})
+
+// GET: Show one budget
+router.get("/:id", isSignedIn, async (req, res) => {
+    const budget = await Budget.findOne({
+        _id: req.params.id,
+        userId: req.session.user._id
+    })
+
+    if (!budget) {
+        return res.redirect("/budget")
+    }
+
+    res.render("budget/budget-details.ejs", { budget })
+})
+
+// DELETE: Delete a budget
+router.delete("/:id", isSignedIn, async (req, res) => {
+    await Budget.findOneAndDelete({
+        _id: req.params.id,
+        userId: req.session.user._id
+    })
+
+    res.redirect("/budget");
 })
 
 module.exports = router;
