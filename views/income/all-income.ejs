@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Income | Money Diary</title>
+</head>
+
+<body>
+
+    <%- include('../partials/navbar') %>
+
+        <h1>My Income</h1>
+
+        <h2>
+            <%= new Date(budget.year, budget.month - 1).toLocaleString('en-US', { month: 'long' }) %>
+                <%= budget.year %>
+        </h2>
+
+        <a href="/income/budget/<%= budget._id %>/new">+ Add Income</a>
+
+        <hr>
+
+        <% if (incomes.length===0) { %>
+
+            <p>No income added yet.</p>
+            <a href="/income/budget/<%= budget._id %>/new">Add your first income</a>
+
+            <% } else { %>
+
+                <% let totalIncome=0; %>
+
+                    <% incomes.forEach(income=> { %>
+
+                        <% totalIncome +=income.amount; %>
+
+                            <div>
+                                <h3>
+                                    <%= income.source %>
+                                </h3>
+
+                                <p>Amount: <%= income.amount %> BHD</p>
+
+                                <p>Date: <%= new Date(income.date).toLocaleDateString() %>
+                                </p>
+
+                                <form action="/income/<%= income._id %>/edit" method="GET">
+                                    <button type="submit">Edit</button>
+                                </form>
+
+                                <br>
+
+                                <form action="/income/<%= income._id %>?_method=DELETE" method="POST"
+                                    onsubmit="return confirm('Are you sure you want to delete this income?')">
+                                    <button type="submit">Delete</button>
+                                </form>
+
+                                <hr>
+                            </div>
+
+                            <% }) %>
+
+                                <h2>Total Income: <%= totalIncome.toFixed(3) %> BHD</h2>
+
+                                <% } %>
+
+                                    <a href="/budget/<%= budget._id %>">Back to Budget Details</a>
+
+</body>
+
+</html>
