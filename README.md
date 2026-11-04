@@ -26,7 +26,6 @@ Money Diary aims to help users understand their spending habits, manage their bu
 
 ## Getting Started
 
-
 ### Steps to Clone the Template
 
 1. Create a folder for your project and navigate into it:

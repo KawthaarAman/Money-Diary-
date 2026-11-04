@@ -3,13 +3,126 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=\, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Details | Money Diary</title>
 </head>
 
 <body>
 
-    <h1>Budget Details</h1>
+    <%- include('../partials/navbar') %>
+
+        <h1>Budget Details</h1>
+
+        <h2>
+            <%= new Date(budget.year, budget.month - 1).toLocaleString('en-US', { month: 'long' }) %>
+                <%= budget.year %>
+        </h2>
+
+        <hr>
+
+        <h2>Financial Overview</h2>
+
+        <p>Total Income: <%= totalIncome %> BHD</p>
+
+        <p>Total Obligations: <%= totalObligations %> BHD</p>
+
+        <p>Remaining Balance: <%= remainingBalance %> BHD</p>
+
+        <hr>
+
+        <h2>Budget Categories</h2>
+
+        <% if (categories.length===0) { %>
+            <p>No budget categories added yet.</p>
+            <% } else { %>
+                <% categories.forEach(category=> { %>
+                    <div>
+                        <h3>
+                            <%= category.name %>
+                        </h3>
+                        <p>Allocated Amount: <%= category.allocatedAmount %> BHD</p>
+                    </div>
+                    <% }) %>
+                        <% } %>
+
+                            <hr>
+
+                            <h2>Monthly Obligations</h2>
+
+                            <% if (obligations.length===0) { %>
+                                <p>No obligations added yet.</p>
+                                <% } else { %>
+                                    <% obligations.forEach(obligation=> { %>
+                                        <div>
+                                            <h3>
+                                                <%= obligation.name %>
+                                            </h3>
+                                            <p>Amount: <%= obligation.amount %> BHD</p>
+                                            <p>Due Date: <%= new Date(obligation.dueDate).toLocaleDateString() %>
+                                            </p>
+                                            <p>Status: <%= obligation.isPaid ? "Paid" : "Not Paid" %>
+                                            </p>
+                                        </div>
+                                        <% }) %>
+                                            <% } %>
+
+                                                <hr>
+
+                                                <h2>Transactions</h2>
+
+                                                <% if (transactions.length===0) { %>
+                                                    <p>No transactions added yet.</p>
+                                                    <% } else { %>
+                                                        <% transactions.forEach(transaction=> { %>
+                                                            <div>
+                                                                <h3>
+                                                                    <%= transaction.title %>
+                                                                </h3>
+                                                                <p>Amount: <%= transaction.amount %> BHD</p>
+                                                                <p>Date: <%= new
+                                                                        Date(transaction.date).toLocaleDateString() %>
+                                                                </p>
+                                                                <p>Mood: <%= transaction.mood %>
+                                                                </p>
+                                                                <p>Note: <%= transaction.note %>
+                                                                </p>
+
+                                                                <% if (transaction.photo) { %>
+                                                                    <img src="<%= transaction.photo %>"
+                                                                        alt="Transaction photo" width="150">
+                                                                    <% } %>
+                                                            </div>
+                                                            <% }) %>
+                                                                <% } %>
+
+                                                                    <hr>
+
+                                                                    <h2>Savings Goals</h2>
+
+                                                                    <% if (savingsGoals.length===0) { %>
+                                                                        <p>No savings goals added yet.</p>
+                                                                        <% } else { %>
+                                                                            <% savingsGoals.forEach(goal=> { %>
+                                                                                <div>
+                                                                                    <h3>
+                                                                                        <%= goal.name %>
+                                                                                    </h3>
+                                                                                    <p>Target: <%= goal.targetAmount %>
+                                                                                            BHD</p>
+                                                                                    <p>Saved: <%= goal.savedAmount %>
+                                                                                            BHD</p>
+                                                                                    <p>Deadline: <%= new
+                                                                                            Date(goal.deadline).toLocaleDateString()
+                                                                                            %>
+                                                                                    </p>
+                                                                                </div>
+                                                                                <% }) %>
+                                                                                    <% } %>
+
+                                                                                        <hr>
+
+                                                                                        <a href="/budget">Back to All
+                                                                                            Budgets</a>
 
 </body>
 
