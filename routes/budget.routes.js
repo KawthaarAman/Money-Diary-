@@ -10,7 +10,7 @@ const Obligation = require("../models/Obligation");
 
 const BudgetCategory = require("../models/BudgetCategory");
 
-const Transaction = require("../models/Transaction");
+const Transaction = require("../models/Transaction")
 
 const SavingsGoals = require("../models/SavingsGoals");
 
@@ -113,7 +113,7 @@ router.delete("/:id", isSignedIn, async (req, res) => {
         userId: req.session.user._id
     })
 
-    res.redirect("/budget");
+    res.redirect("/budget")
 })
 
 module.exports = router;
