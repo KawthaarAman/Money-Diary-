@@ -1,4 +1,3 @@
-
 /* ALL BUDGETS PAGE */
 
 .budget-card {
@@ -60,7 +59,6 @@
     margin-bottom: 20px;
 }
 
-
 /* Budget Details Summary */
 
 .summary-grid {
@@ -121,7 +119,7 @@
     margin-bottom: 8px;
 }
 
-.details-card > p {
+.details-card>p {
     color: #858577;
     line-height: 1.6;
     min-height: 48px;
@@ -160,12 +158,12 @@
 }
 
 @media (max-width: 700px) {
+
     .summary-grid,
     .budget-sections {
         grid-template-columns: 1fr;
     }
 }
-
 
 /* Edit Budget Page */
 
