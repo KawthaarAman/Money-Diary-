@@ -5,41 +5,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Income | Money Diary</title>
+
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/income.css">
 </head>
 
 <body>
 
-    <%- include('../partials/navbar') %>
+    <%- include('../partials/navbar.ejs') %>
 
-        <h1>Edit Income</h1>
+        <main class="income-form-page">
 
-        <form action="/income/<%= income._id %>?_method=PUT" method="POST">
+            <div class="income-form-card">
 
-            <label for="source">Income Source:</label>
-            <input type="text" name="source" id="source" value="<%= income.source %>" required>
+                <div class="income-form-icon">✎</div>
 
-            <br><br>
+                <h1>Edit Income</h1>
 
-            <label for="amount">Amount (BHD):</label>
-            <input type="number" name="amount" id="amount" min="0.001" step="0.001" value="<%= income.amount %>"
-                required>
+                <p class="income-form-description">
+                    Update your income details below.
+                </p>
 
-            <br><br>
+                <form action="/income/<%= income._id %>?_method=PUT" method="POST">
 
-            <label for="date">Date:</label>
-            <input type="date" name="date" id="date" value="<%= new Date(income.date).toISOString().slice(0, 10) %>"
-                required>
+                    <div class="form-group">
+                        <label for="source">Income Source</label>
 
-            <br><br>
+                        <input type="text" id="source" name="source" value="<%= income.source %>"
+                            placeholder="e.g. Salary, Freelance" required>
+                    </div>
 
-            <button type="submit">Save Changes</button>
+                    <div class="form-group">
+                        <label for="amount">Amount</label>
 
-            <button type="button" onclick="window.location.href='/income/budget/<%= budget._id %>'">
-                Cancel
-            </button>
+                        <input type="number" id="amount" name="amount" value="<%= income.amount %>" min="0" step="0.01"
+                            required>
+                    </div>
 
-        </form>
+                    <div class="form-group">
+                        <label for="date">Date</label>
+
+                        <input type="date" id="date" name="date" value="<%= income.date.toISOString().split('T')[0] %>"
+                            required>
+                    </div>
+
+                    <div class="income-form-actions">
+
+                        <button type="submit" class="btn">
+                            Save Changes
+                        </button>
+
+                        <a href="/income/budget/<%= budget._id %>" class="btn btn-secondary">
+                            Cancel
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </main>
 
 </body>
 

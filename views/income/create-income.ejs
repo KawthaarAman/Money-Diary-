@@ -5,45 +5,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Income | Money Diary</title>
+
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/income.css">
 </head>
 
 <body>
 
-    <%- include('../partials/navbar') %>
+    <%- include('../partials/navbar.ejs') %>
 
-        <h1>Add Income</h1>
+        <main class="income-form-page">
 
-        <h2>
-            For
-            <%= new Date(budget.year, budget.month - 1).toLocaleString('en-US', { month: 'long' }) %>
-                <%= budget.year %>
-        </h2>
+            <div class="income-form-card">
 
-        <form action="/income/budget/<%= budget._id %>" method="POST">
+                <div class="income-form-icon">＋</div>
 
-            <label for="source">Income Source:</label>
-            <input type="text" name="source" id="source" placeholder="e.g. Monthly Salary" required>
+                <h1>Add New Income</h1>
 
-            <br><br>
+                <p class="income-form-description">
+                    Record your salary or any additional income.
+                </p>
 
-            <label for="amount">Amount (BHD):</label>
-            <input type="number" name="amount" id="amount" min="0.001" step="0.001" placeholder="e.g. 800" required>
+                <form action="/income/budget/<%= budget._id %>" method="POST">
 
-            <br><br>
+                    <div class="form-group">
+                        <label for="source">Income Source</label>
 
-            <label for="date">Date:</label>
-            <input type="date" name="date" id="date" required>
+                        <input type="text" id="source" name="source" placeholder="e.g. Salary, Freelance, Bonus"
+                            required>
+                    </div>
 
-            <br><br>
+                    <div class="form-group">
+                        <label for="amount">Amount</label>
 
-            <button type="submit">Add Income</button>
+                        <input type="number" id="amount" name="amount" placeholder="Enter amount" min="0" step="0.01"
+                            required>
+                    </div>
 
-            <a class="cancel-btn" href="/income/budget/<%= budget._id %>">
-                    Cancel
-                </a>
+                    <div class="form-group">
+                        <label for="date">Date</label>
 
-        </form>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+
+                    <div class="income-form-actions">
+
+                        <button type="submit" class="btn">
+                            Add Income
+                        </button>
+
+                        <a href="/income/budget/<%= budget._id %>" class="btn btn-secondary">
+                            Cancel
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </main>
 
 </body>
 
