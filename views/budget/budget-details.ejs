@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,149 +6,151 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Budget Details | Money Diary</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/budget.css">
 </head>
 
 <body>
 
-    <%- include('../partials/navbar') %>
+    <%- include('../partials/navbar.ejs') %>
 
-        <h1>Budget Details</h1>
+    <main class="container">
 
-        <h2>
-            <%= new Date(budget.year, budget.month - 1).toLocaleString('en-US', { month: 'long' }) %>
-                <%= budget.year %>
-        </h2>
+        <div class="page-header">
+            <div>
+                <p class="eyebrow">YOUR MONTHLY PLAN</p>
+                <h1>Budget Details</h1>
+                <p>Manage your money and keep track of your spending.</p>
+            </div>
 
-        <hr>
+            <a href="/budget" class="btn btn-secondary">Back to Budgets</a>
+        </div>
 
-        <h2>Financial Overview</h2>
+        <!-- Budget Summary -->
+        <section class="summary-grid">
 
-        <h2>Income</h2>
+            <div class="summary-card">
+                <p>Total Income</p>
+                <h2><%= totalIncome %></h2>
+            </div>
 
-        <a href="/income/budget/<%= budget._id %>">
-            Manage Income
-        </a>
+            <div class="summary-card">
+                <p>Total Obligations</p>
+                <h2><%= totalObligations %></h2>
+            </div>
 
-        <a href="/income/budget/<%= budget._id %>/new">
-            + Add Income
-        </a>
+            <div class="summary-card">
+                <p>Remaining Balance</p>
+                <h2><%= remainingBalance %></h2>
+            </div>
 
-        <p>Total Income: <%= totalIncome %> BHD</p>
+        </section>
 
-        <p>Total Obligations: <%= totalObligations %> BHD</p>
+        <!-- Budget Sections -->
+        <section class="budget-sections">
 
-        <p>Remaining Balance: <%= remainingBalance %> BHD</p>
+            <!-- Income Card -->
+            <div class="details-card">
+                <div class="details-card-icon">💰</div>
+                <h2>Income</h2>
+                <p>Manage your salary and other sources of income.</p>
 
-        <hr>
+                <div class="details-card-info">
+                    <span>Total Income</span>
+                    <strong><%= totalIncome %></strong>
+                </div>
 
-        <h2>Budget Categories</h2>
+                <div class="details-card-actions">
+                    <a href="/income/budget/<%= budget._id %>" class="btn btn-secondary">
+                        View
+                    </a>
 
-        <% if (categories.length===0) { %>
-            <p>No budget categories added yet.</p>
-            <% } else { %>
-                <% categories.forEach(category=> { %>
-                    <div>
-                        <h3>
-                            <%= category.name %>
-                        </h3>
-                        <p>Allocated Amount: <%= category.allocatedAmount %> BHD</p>
-                    </div>
-                    <% }) %>
-                        <% } %>
+                    <a href="/income/budget/<%= budget._id %>/new" class="btn">
+                        + Add Income
+                    </a>
+                </div>
+            </div>
 
-                            <a href="/budget-category/budget/<%= budget._id %>">
-                                View Categories
-                            </a>
+            <!-- Obligations Card -->
+            <div class="details-card">
+                <div class="details-card-icon">🧾</div>
+                <h2>Obligations</h2>
+                <p>Keep track of your bills and monthly payments.</p>
 
-                            <a href="/budget-category/budget/<%= budget._id %>/new">
-                                + Add Category
-                            </a>
+                <div class="details-card-info">
+                    <span>Total Obligations</span>
+                    <strong><%= totalObligations %></strong>
+                </div>
 
-                            <hr>
+                <div class="details-card-actions">
+                    <a href="/obligation/budget/<%= budget._id %>" class="btn btn-secondary">
+                        View
+                    </a>
 
-                            <h2>Monthly Obligations</h2>
+                    <a href="/obligation/budget/<%= budget._id %>/new" class="btn">
+                        + Add Obligation
+                    </a>
+                </div>
+            </div>
 
-                            <% if (obligations.length===0) { %>
-                                <p>No obligations added yet.</p>
-                                <% } else { %>
-                                    <% obligations.forEach(obligation=> { %>
-                                        <div>
-                                            <h3>
-                                                <%= obligation.name %>
-                                            </h3>
-                                            <p>Amount: <%= obligation.amount %> BHD</p>
-                                            <p>Due Date: <%= new Date(obligation.dueDate).toLocaleDateString() %>
-                                            </p>
-                                            <p>Status: <%= obligation.isPaid ? "Paid" : "Not Paid" %>
-                                            </p>
-                                        </div>
-                                        <% }) %>
-                                            <% } %>
+            <!-- Budget Categories Card -->
+            <div class="details-card">
+                <div class="details-card-icon">🛍️</div>
+                <h2>Budget Categories</h2>
+                <p>Divide your remaining money into spending categories.</p>
 
-                                                <a href="/obligation/budget/<%= budget._id %>">
-                                                    View Obligations
-                                                </a>
+                <div class="details-card-info">
+                    <span>Number of Categories</span>
+                    <strong><%= categories.length %></strong>
+                </div>
 
-                                                <a href="/obligation/budget/<%= budget._id %>/new">
-                                                    + Add Obligation
-                                                </a>
+                <div class="details-card-actions">
+                    <a href="/budget-category/budget/<%= budget._id %>" class="btn btn-secondary">
+                        View
+                    </a>
 
-                                                <hr>
+                    <a href="/budget-category/budget/<%= budget._id %>/new" class="btn">
+                        + Add Category
+                    </a>
+                </div>
+            </div>
 
-                                                <h2>Transactions</h2>
+            <!-- Transactions Card -->
+            <div class="details-card">
+                <div class="details-card-icon">📝</div>
+                <h2>Transactions</h2>
+                <p>Record your purchases and track where your money goes.</p>
 
-                                                <% if (transactions.length===0) { %>
-                                                    <p>No transactions added yet.</p>
-                                                    <% } else { %>
-                                                        <% transactions.forEach(transaction=> { %>
-                                                            <div>
-                                                                <h3>
-                                                                    <%= transaction.title %>
-                                                                </h3>
-                                                                <p>Amount: <%= transaction.amount %> BHD</p>
-                                                                <p>Date: <%= new
-                                                                        Date(transaction.date).toLocaleDateString() %>
-                                                                </p>
-                                                                <p>Mood: <%= transaction.mood %>
-                                                                </p>
-                                                                <p>Note: <%= transaction.note %>
-                                                                </p>
+                <div class="details-card-info">
+                    <span>Total Transactions</span>
+                    <strong><%= transactions.length %></strong>
+                </div>
 
-                                                                <% if (transaction.photo) { %>
-                                                                    <img src="<%= transaction.photo %>"
-                                                                        alt="Transaction photo" width="150">
-                                                                    <% } %>
-                                                            </div>
-                                                            <% }) %>
-                                                                <% } %>
+                <div class="details-card-actions">
+                    <span class="coming-soon">Coming soon</span>
+                </div>
+            </div>
 
-                                                                    <hr>
+            <!-- Savings Goals Card -->
+            <div class="details-card">
+                <div class="details-card-icon">🌱</div>
+                <h2>Savings Goals</h2>
+                <p>Set your savings goals and follow your progress.</p>
 
-                                                                    <h2>Savings Goals</h2>
+                <div class="details-card-info">
+                    <span>Number of Goals</span>
+                    <strong><%= savingsGoals.length %></strong>
+                </div>
 
-                                                                    <% if (savingsGoals.length===0) { %>
-                                                                        <p>No savings goals added yet.</p>
-                                                                        <% } else { %>
-                                                                            <% savingsGoals.forEach(goal=> { %>
-                                                                                <div>
-                                                                                    <h3>
-                                                                                        <%= goal.name %>
-                                                                                    </h3>
-                                                                                    <p>Target: <%= goal.targetAmount %>
-                                                                                            BHD</p>
-                                                                                    <p>Saved: <%= goal.savedAmount %>
-                                                                                            BHD</p>
-                                                                                    <p>Deadline: <%= new
-                                                                                            Date(goal.deadline).toLocaleDateString()
-                                                                                            %>
-                                                                                    </p>
-                                                                                </div>
-                                                                                <% }) %>
-                                                                                    <% } %>
+                <div class="details-card-actions">
+                    <span class="coming-soon">Coming soon</span>
+                </div>
+            </div>
 
-                                                                                        <hr>
+        </section>
 
+    </main>
 
 </body>
-
 </html>

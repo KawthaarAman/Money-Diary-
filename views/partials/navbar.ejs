@@ -1,15 +1,40 @@
-<nav>
 
-    <a href="/">Homepage</a>
-    <% if (user){ %>
-        <a href="/auth/sign-out">Logout</a>
-        <a href="/budget/new">Create New Budget</a>
-        <a href="/budget">All Budgets</a>
+<nav class="navbar">
+    <a href="/" class="logo">Money Diary</a>
 
-        <% } else{ %>
-            <a href="/auth/sign-up">Sign up</a>
-            <a href="/auth/sign-in">Login</a>
+    <div class="nav-links">
 
-            <% } %>
+        <a href="/" class="<%= currentPath === '/' ? 'active' : '' %>">
+            Homepage
+        </a>
 
+        <% if (user) { %>
+
+            <a href="/budget"
+               class="<%= currentPath === '/budget' || (currentPath.startsWith('/budget/') && currentPath !== '/budget/new') ? 'active' : '' %>">
+                All Budgets
+            </a>
+
+            <a href="/budget/new"
+               class="nav-button <%= currentPath === '/budget/new' ? 'active' : '' %>">
+                Create New Budget
+            </a>
+
+            <a href="/auth/sign-out">Logout</a>
+
+        <% } else { %>
+
+            <a href="/auth/sign-up"
+               class="<%= currentPath === '/auth/sign-up' ? 'active' : '' %>">
+                Sign Up
+            </a>
+
+            <a href="/auth/sign-in"
+               class="<%= currentPath === '/auth/sign-in' ? 'active' : '' %>">
+                Login
+            </a>
+
+        <% } %>
+
+    </div>
 </nav>

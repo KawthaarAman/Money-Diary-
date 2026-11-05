@@ -6,52 +6,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Budget | Money Diary</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/budget.css">
 </head>
 
 <body>
 
     <%- include('../partials/navbar') %>
 
-    <h1>Edit Budget</h1>
+    <main class="container">
 
-    <form action="/budget/<%= budget._id %>?_method=PUT" method="POST">
+        <div class="page-header">
+            <div>
+                <p class="eyebrow">UPDATE YOUR PLAN</p>
+                <h1>Edit Budget ✎</h1>
+                <p>Make changes to your monthly budget.</p>
+            </div>
+        </div>
 
-        <label for="month">Select Month:</label>
+        <div class="edit-budget-container">
 
-        <select name="month" id="month" required>
-            <option value="1" <%= budget.month === 1 ? "selected" : "" %>>January</option>
-            <option value="2" <%= budget.month === 2 ? "selected" : "" %>>February</option>
-            <option value="3" <%= budget.month === 3 ? "selected" : "" %>>March</option>
-            <option value="4" <%= budget.month === 4 ? "selected" : "" %>>April</option>
-            <option value="5" <%= budget.month === 5 ? "selected" : "" %>>May</option>
-            <option value="6" <%= budget.month === 6 ? "selected" : "" %>>June</option>
-            <option value="7" <%= budget.month === 7 ? "selected" : "" %>>July</option>
-            <option value="8" <%= budget.month === 8 ? "selected" : "" %>>August</option>
-            <option value="9" <%= budget.month === 9 ? "selected" : "" %>>September</option>
-            <option value="10" <%= budget.month === 10 ? "selected" : "" %>>October</option>
-            <option value="11" <%= budget.month === 11 ? "selected" : "" %>>November</option>
-            <option value="12" <%= budget.month === 12 ? "selected" : "" %>>December</option>
-        </select>
+            <div class="edit-budget-card">
 
-        <br><br>
+                <div class="edit-budget-heading">
+                    <span class="edit-budget-icon">📅</span>
+                    <div>
+                        <h2>Budget Information</h2>
+                        <p>Update the month and year of your budget.</p>
+                    </div>
+                </div>
 
-        <label for="year">Select Year:</label>
+                <form action="/budget/<%= budget._id %>?_method=PUT" method="POST">
 
-        <input
-            type="number"
-            name="year"
-            id="year"
-            value="<%= budget.year %>"
-            required
-        >
+                    <div class="form-group">
+                        <label for="month">Select Month</label>
 
-        <br><br>
+                        <select name="month" id="month" required>
+                            <option value="1" <%= budget.month === 1 ? "selected" : "" %>>January</option>
+                            <option value="2" <%= budget.month === 2 ? "selected" : "" %>>February</option>
+                            <option value="3" <%= budget.month === 3 ? "selected" : "" %>>March</option>
+                            <option value="4" <%= budget.month === 4 ? "selected" : "" %>>April</option>
+                            <option value="5" <%= budget.month === 5 ? "selected" : "" %>>May</option>
+                            <option value="6" <%= budget.month === 6 ? "selected" : "" %>>June</option>
+                            <option value="7" <%= budget.month === 7 ? "selected" : "" %>>July</option>
+                            <option value="8" <%= budget.month === 8 ? "selected" : "" %>>August</option>
+                            <option value="9" <%= budget.month === 9 ? "selected" : "" %>>September</option>
+                            <option value="10" <%= budget.month === 10 ? "selected" : "" %>>October</option>
+                            <option value="11" <%= budget.month === 11 ? "selected" : "" %>>November</option>
+                            <option value="12" <%= budget.month === 12 ? "selected" : "" %>>December</option>
+                        </select>
+                    </div>
 
-        <button type="submit">Save Changes</button>
-        <button type="submit">Cancel</button>
+                    <div class="form-group">
+                        <label for="year">Select Year</label>
 
+                        <input
+                            type="number"
+                            name="year"
+                            id="year"
+                            value="<%= budget.year %>"
+                            min="2000"
+                            max="2100"
+                            required
+                        >
+                    </div>
 
-    </form>
+                    <div class="edit-budget-actions">
+                        <button type="submit" class="btn">
+                            Save Changes
+                        </button>
+
+                        <a href="/budget" class="btn btn-secondary">
+                            Cancel
+                        </a>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </main>
 
 </body>
 </html>
