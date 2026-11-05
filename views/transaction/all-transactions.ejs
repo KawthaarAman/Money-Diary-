@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions | Money Diary</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/transaction.css">
+</head>
+
+<body>
+
+    <%- include('../partials/navbar.ejs') %>
+
+        <main class="transaction-container">
+
+            <div class="transaction-header">
+                <p class="eyebrow">MONEY DIARY</p>
+                <h1>Your Transactions</h1>
+                <p>Every purchase tells a little story.</p>
+            </div>
+
+            <section class="transaction-summary">
+
+                <div class="summary-card">
+                    <span>Total Transactions</span>
+                    <h2>
+                        <%= transactions.length %>
+                    </h2>
+                </div>
+
+                <div class="summary-card">
+                    <span>Total Spending</span>
+                    <h2>
+                        <%= totalSpending.toFixed(3) %>
+                    </h2>
+                    <small>BHD</small>
+                </div>
+
+            </section>
+
+            <div class="transaction-actions">
+                <a href="/transaction/budget/<%= budget._id %>/new" class="btn btn-primary">
+                    + Add Transaction
+                </a>
+
+                <a href="/budget/<%= budget._id %>" class="btn btn-secondary">
+                    Back to Budget
+                </a>
+            </div>
+
+            <% if (transactions.length> 0) { %>
+
+                <div class="transaction-grid">
+
+                    <% transactions.forEach(transaction=> { %>
+
+                        <article class="transaction-card">
+
+                            <% if (transaction.photo) { %>
+                                <img src="<%= transaction.photo %>" alt="<%= transaction.title %>"
+                                    class="transaction-photo">
+                                <% } %>
+
+                                    <div class="transaction-card-content">
+
+                                        <div class="transaction-card-top">
+                                            <h3>
+                                                <%= transaction.title %>
+                                            </h3>
+
+                                            <span class="transaction-amount">
+                                                <%= transaction.amount.toFixed(3) %> BHD
+                                            </span>
+                                        </div>
+
+                                        <p class="transaction-category">
+                                            <%= transaction.categoryId ? transaction.categoryId.name
+                                                : "Category unavailable" %>
+                                        </p>
+
+                                        <p class="transaction-date">
+                                            <%= new Date(transaction.date).toLocaleDateString() %>
+                                        </p>
+
+                                        <% if (transaction.mood) { %>
+                                            <p class="transaction-mood">
+                                                Mood: <%= transaction.mood %>
+                                            </p>
+                                            <% } %>
+
+                                                <% if (transaction.note) { %>
+                                                    <p class="transaction-note">
+                                                        <%= transaction.note %>
+                                                    </p>
+                                                    <% } %>
+
+                                                        <div class="transaction-card-buttons">
+
+                                                            <a href="/transaction/<%= transaction._id %>/edit"
+                                                                class="btn btn-secondary">
+                                                                Edit
+                                                            </a>
+
+                                                            <form
+                                                                action="/transaction/<%= transaction._id %>?_method=DELETE"
+                                                                method="POST"
+                                                                onsubmit="return confirm('Are you sure you want to delete this transaction?');">
+                                                                <button type="submit" class="btn btn-danger">
+                                                                    Delete
+                                                                </button>
+                                                            </form>
+
+                                                        </div>
+
+                                    </div>
+
+                        </article>
+
+                        <% }) %>
+
+                </div>
+
+                <% } else { %>
+
+                    <div class="empty-transactions">
+                        <div class="empty-icon">🧾</div>
+                        <h2>No transactions yet</h2>
+                        <p>Start recording your purchases to keep track of your spending.</p>
+
+                        <a href="/transaction/budget/<%= budget._id %>/new" class="btn btn-primary">
+                            Add Your First Transaction
+                        </a>
+                    </div>
+
+                    <% } %>
+
+        </main>
+
+</body>
+
+</html>
