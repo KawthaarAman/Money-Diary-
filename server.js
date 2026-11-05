@@ -36,9 +36,13 @@ const obligationRoutes = require("./routes/obligation.routes");
 
 const budgetCategoryRoutes = require("./routes/budget-category.routes");
 
+const transactionRoutes = require("./routes/transaction.routes");
+
 // Middleware
 
-app.use(express.static('public')) // my app will serve all static files from public folder
+app.use(express.static("public"));
+
+app.use("/uploads", express.static("uploads"));
 
 app.use(express.urlencoded({ extended: false }));
 
@@ -85,6 +89,10 @@ app.use("/income", incomeRoutes);
 app.use("/obligation", obligationRoutes);
 
 app.use("/budget-category", budgetCategoryRoutes);
+
+app.use("/transaction", transactionRoutes);
+
+app.use("/uploads", express.static("uploads"));
 
 // connect to database and listen on Port 3000
 async function startServer() {
