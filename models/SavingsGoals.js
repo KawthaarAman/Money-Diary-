@@ -21,6 +21,10 @@ const savingsGoalSchema = new mongoose.Schema({
     default: 0,
     min: 0
   },
+  photo: {
+    type: String,
+    default: ""
+  },
   deadline: {
     type: Date
   }

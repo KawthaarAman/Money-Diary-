@@ -38,6 +38,9 @@ const budgetCategoryRoutes = require("./routes/budget-category.routes");
 
 const transactionRoutes = require("./routes/transaction.routes");
 
+const savingsGoalRoutes = require("./routes/savings-goal.routes");
+
+
 // Middleware
 
 app.use(express.static("public"));
@@ -93,6 +96,8 @@ app.use("/budget-category", budgetCategoryRoutes);
 app.use("/transaction", transactionRoutes);
 
 app.use("/uploads", express.static("uploads"));
+
+app.use("/savings-goal", savingsGoalRoutes);
 
 // connect to database and listen on Port 3000
 async function startServer() {

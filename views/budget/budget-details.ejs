@@ -150,9 +150,11 @@
                 </div>
 
                 <div class="details-card">
-                    <div class="details-card-icon">🌱</div>
+                    <div class="details-card-icon">🎯</div>
+
                     <h2>Savings Goals</h2>
-                    <p>Set your savings goals and follow your progress.</p>
+
+                    <p>Plan your future purchases and track your savings progress.</p>
 
                     <div class="details-card-info">
                         <span>Number of Goals</span>
@@ -162,7 +164,15 @@
                     </div>
 
                     <div class="details-card-actions">
-                        <span class="coming-soon">Coming soon</span>
+
+                        <a href="/savings-goal/budget/<%= budget._id %>" class="btn btn-secondary">
+                            View Goals
+                        </a>
+
+                        <a href="/savings-goal/budget/<%= budget._id %>/new" class="btn">
+                            + Add Goal
+                        </a>
+
                     </div>
                 </div>
 
