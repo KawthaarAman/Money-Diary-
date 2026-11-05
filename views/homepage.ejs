@@ -1,15 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-    <%- include('./partials/navbar') %>
+    <title>Home | Money Diary</title>
 
-    <h1>Welcome to my Website</h1>
-    
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/home.css">
+</head>
+
+<body>
+
+    <%- include('partials/navbar') %>
+
+        <main class="home-container">
+
+            <section class="hero-section">
+
+                <div class="hero-content">
+                    <p class="eyebrow">WELCOME TO MONEY DIARY</p>
+
+                    <% if (user) { %>
+                        <h1>Welcome back to your financial journey 🌿</h1>
+                        <% } else { %>
+                            <h1>Your money, your plans, your future.</h1>
+                            <% } %>
+
+                                <p class="hero-description">
+                                    Take control of your finances, organize your monthly budget,
+                                    track your spending, and make your money work for you.
+                                </p>
+
+                                <div class="hero-buttons">
+                                    <% if (user) { %>
+                                        <a href="/budget/new" class="btn">
+                                            Create Your Budget
+                                        </a>
+
+                                        <a href="/budget" class="btn btn-secondary">
+                                            Explore Budgets
+                                        </a>
+                                        <% } else { %>
+                                            <a href="/auth/sign-up" class="btn">
+                                                Get Started
+                                            </a>
+
+                                            <a href="/auth/sign-in" class="btn btn-secondary">
+                                                Login
+                                            </a>
+                                            <% } %>
+                                </div>
+                </div>
+
+                <div class="hero-circle">
+                    <span class="hero-icon">📒</span>
+                    <h2>Money Diary</h2>
+                    <p>Plan it. Spend it. Remember it.</p>
+                </div>
+
+            </section>
+
+            <section class="home-intro">
+                <p class="eyebrow">A LITTLE ABOUT US</p>
+                <h2>Make every penny count.</h2>
+                <p>
+                    Money Diary helps you understand where your money goes.
+                    From your monthly income to everyday spending, keep everything
+                    organized in one simple place.
+                </p>
+            </section>
+
+            <section class="features-section">
+
+                <div class="features-heading">
+                    <p class="eyebrow">WHAT YOU CAN DO</p>
+                    <h2>Your finances, all in one place.</h2>
+                </div>
+
+                <div class="features-grid">
+
+                    <div class="feature-card">
+                        <span class="feature-icon">💰</span>
+                        <h3>Track Your Income</h3>
+                        <p>
+                            Record your salary and additional income
+                            to know exactly how much money you have.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <span class="feature-icon">🧾</span>
+                        <h3>Manage Obligations</h3>
+                        <p>
+                            Keep track of your monthly bills,
+                            payments, and financial responsibilities.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <span class="feature-icon">🛍️</span>
+                        <h3>Plan Your Spending</h3>
+                        <p>
+                            Divide your budget into categories
+                            and organize how you want to spend.
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <span class="feature-icon">🌱</span>
+                        <h3>Reach Your Goals</h3>
+                        <p>
+                            Set savings goals and work towards
+                            the things that matter to you.
+                        </p>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <section class="home-bottom">
+                <h2>Small steps. Better money habits.</h2>
+                <p>Start planning today and build a better relationship with your money.</p>
+
+                <% if (user) { %>
+                    <a href="/budget/new" class="btn">Start Planning</a>
+                    <% } else { %>
+                        <a href="/auth/sign-up" class="btn">Create Your Account</a>
+                        <% } %>
+            </section>
+
+        </main>
+
 </body>
+
 </html>

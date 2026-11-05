@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,142 +14,152 @@
 
     <%- include('../partials/navbar.ejs') %>
 
-    <main class="container">
+        <main class="container">
 
-        <div class="page-header">
-            <div>
-                <p class="eyebrow">YOUR MONTHLY PLAN</p>
-                <h1>Budget Details</h1>
-                <p>Manage your money and keep track of your spending.</p>
+            <div class="page-header">
+                <div>
+                    <p class="eyebrow">YOUR MONTHLY PLAN</p>
+                    <h1>Budget Details</h1>
+                    <p>Manage your money and keep track of your spending.</p>
+                </div>
+
+                <a href="/budget" class="btn btn-secondary">Back to Budgets</a>
             </div>
 
-            <a href="/budget" class="btn btn-secondary">Back to Budgets</a>
-        </div>
+            <section class="summary-grid">
 
-        <!-- Budget Summary -->
-        <section class="summary-grid">
-
-            <div class="summary-card">
-                <p>Total Income</p>
-                <h2><%= totalIncome %></h2>
-            </div>
-
-            <div class="summary-card">
-                <p>Total Obligations</p>
-                <h2><%= totalObligations %></h2>
-            </div>
-
-            <div class="summary-card">
-                <p>Remaining Balance</p>
-                <h2><%= remainingBalance %></h2>
-            </div>
-
-        </section>
-
-        <!-- Budget Sections -->
-        <section class="budget-sections">
-
-            <!-- Income Card -->
-            <div class="details-card">
-                <div class="details-card-icon">💰</div>
-                <h2>Income</h2>
-                <p>Manage your salary and other sources of income.</p>
-
-                <div class="details-card-info">
-                    <span>Total Income</span>
-                    <strong><%= totalIncome %></strong>
+                <div class="summary-card">
+                    <p>Total Income</p>
+                    <h2>
+                        <%= totalIncome %>
+                    </h2>
                 </div>
 
-                <div class="details-card-actions">
-                    <a href="/income/budget/<%= budget._id %>" class="btn btn-secondary">
-                        View
-                    </a>
-
-                    <a href="/income/budget/<%= budget._id %>/new" class="btn">
-                        + Add Income
-                    </a>
-                </div>
-            </div>
-
-            <!-- Obligations Card -->
-            <div class="details-card">
-                <div class="details-card-icon">🧾</div>
-                <h2>Obligations</h2>
-                <p>Keep track of your bills and monthly payments.</p>
-
-                <div class="details-card-info">
-                    <span>Total Obligations</span>
-                    <strong><%= totalObligations %></strong>
+                <div class="summary-card">
+                    <p>Total Obligations</p>
+                    <h2>
+                        <%= totalObligations %>
+                    </h2>
                 </div>
 
-                <div class="details-card-actions">
-                    <a href="/obligation/budget/<%= budget._id %>" class="btn btn-secondary">
-                        View
-                    </a>
-
-                    <a href="/obligation/budget/<%= budget._id %>/new" class="btn">
-                        + Add Obligation
-                    </a>
-                </div>
-            </div>
-
-            <!-- Budget Categories Card -->
-            <div class="details-card">
-                <div class="details-card-icon">🛍️</div>
-                <h2>Budget Categories</h2>
-                <p>Divide your remaining money into spending categories.</p>
-
-                <div class="details-card-info">
-                    <span>Number of Categories</span>
-                    <strong><%= categories.length %></strong>
+                <div class="summary-card">
+                    <p>Remaining Balance</p>
+                    <h2>
+                        <%= remainingBalance %>
+                    </h2>
                 </div>
 
-                <div class="details-card-actions">
-                    <a href="/budget-category/budget/<%= budget._id %>" class="btn btn-secondary">
-                        View
-                    </a>
+            </section>
 
-                    <a href="/budget-category/budget/<%= budget._id %>/new" class="btn">
-                        + Add Category
-                    </a>
-                </div>
-            </div>
+            <section class="budget-sections">
 
-            <!-- Transactions Card -->
-            <div class="details-card">
-                <div class="details-card-icon">📝</div>
-                <h2>Transactions</h2>
-                <p>Record your purchases and track where your money goes.</p>
+                <div class="details-card">
+                    <div class="details-card-icon">💰</div>
+                    <h2>Income</h2>
+                    <p>Manage your salary and other sources of income.</p>
 
-                <div class="details-card-info">
-                    <span>Total Transactions</span>
-                    <strong><%= transactions.length %></strong>
-                </div>
+                    <div class="details-card-info">
+                        <span>Total Income</span>
+                        <strong>
+                            <%= totalIncome %>
+                        </strong>
+                    </div>
 
-                <div class="details-card-actions">
-                    <span class="coming-soon">Coming soon</span>
-                </div>
-            </div>
+                    <div class="details-card-actions">
+                        <a href="/income/budget/<%= budget._id %>" class="btn btn-secondary">
+                            View
+                        </a>
 
-            <!-- Savings Goals Card -->
-            <div class="details-card">
-                <div class="details-card-icon">🌱</div>
-                <h2>Savings Goals</h2>
-                <p>Set your savings goals and follow your progress.</p>
-
-                <div class="details-card-info">
-                    <span>Number of Goals</span>
-                    <strong><%= savingsGoals.length %></strong>
+                        <a href="/income/budget/<%= budget._id %>/new" class="btn">
+                            + Add Income
+                        </a>
+                    </div>
                 </div>
 
-                <div class="details-card-actions">
-                    <span class="coming-soon">Coming soon</span>
+                <div class="details-card">
+                    <div class="details-card-icon">🧾</div>
+                    <h2>Obligations</h2>
+                    <p>Keep track of your bills and monthly payments.</p>
+
+                    <div class="details-card-info">
+                        <span>Total Obligations</span>
+                        <strong>
+                            <%= totalObligations %>
+                        </strong>
+                    </div>
+
+                    <div class="details-card-actions">
+                        <a href="/obligation/budget/<%= budget._id %>" class="btn btn-secondary">
+                            View
+                        </a>
+
+                        <a href="/obligation/budget/<%= budget._id %>/new" class="btn">
+                            + Add Obligation
+                        </a>
+                    </div>
                 </div>
-            </div>
 
-        </section>
+                <div class="details-card">
+                    <div class="details-card-icon">🛍️</div>
+                    <h2>Budget Categories</h2>
+                    <p>Divide your remaining money into spending categories.</p>
 
-    </main>
+                    <div class="details-card-info">
+                        <span>Number of Categories</span>
+                        <strong>
+                            <%= categories.length %>
+                        </strong>
+                    </div>
+
+                    <div class="details-card-actions">
+                        <a href="/budget-category/budget/<%= budget._id %>" class="btn btn-secondary">
+                            View
+                        </a>
+
+                        <a href="/budget-category/budget/<%= budget._id %>/new" class="btn">
+                            + Add Category
+                        </a>
+                    </div>
+                </div>
+
+                <div class="details-card">
+                    <div class="details-card-icon">📝</div>
+                    <h2>Transactions</h2>
+                    <p>Record your purchases and track where your money goes.</p>
+
+                    <div class="details-card-info">
+                        <span>Total Transactions</span>
+                        <strong>
+                            <%= transactions.length %>
+                        </strong>
+                    </div>
+
+                    <div class="details-card-actions">
+                        <span class="coming-soon">Coming soon</span>
+                    </div>
+                </div>
+
+                <div class="details-card">
+                    <div class="details-card-icon">🌱</div>
+                    <h2>Savings Goals</h2>
+                    <p>Set your savings goals and follow your progress.</p>
+
+                    <div class="details-card-info">
+                        <span>Number of Goals</span>
+                        <strong>
+                            <%= savingsGoals.length %>
+                        </strong>
+                    </div>
+
+                    <div class="details-card-actions">
+                        <span class="coming-soon">Coming soon</span>
+                    </div>
+                </div>
+
+            </section>
+
+        </main>
 
 </body>
+
 </html>

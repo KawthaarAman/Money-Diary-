@@ -15,11 +15,13 @@ const Transaction = require("../models/Transaction")
 const SavingsGoals = require("../models/SavingsGoals");
 
 // GET: Show Create Budget page
+
 router.get("/new", isSignedIn, (req, res) => {
     res.render("budget/create-budget.ejs")
 })
 
 // POST: Create a new budget
+
 router.post("/", isSignedIn, async (req, res) => {
     const newBudget = await Budget.create({
         userId: req.session.user._id,
@@ -31,6 +33,7 @@ router.post("/", isSignedIn, async (req, res) => {
 })
 
 // GET: Display all budgets
+
 router.get("/", isSignedIn, async (req, res) => {
     const budgets = await Budget.find({
         userId: req.session.user._id
@@ -40,11 +43,12 @@ router.get("/", isSignedIn, async (req, res) => {
 })
 
 // GET: Show Edit Budget page
+
 router.get("/:id/edit", isSignedIn, async (req, res) => {
     const budget = await Budget.findOne({
         _id: req.params.id,
         userId: req.session.user._id
-    });
+    })
 
     if (!budget) {
         return res.redirect("/budget")
@@ -54,6 +58,7 @@ router.get("/:id/edit", isSignedIn, async (req, res) => {
 })
 
 // PUT: Update Budget
+
 router.put("/:id", isSignedIn, async (req, res) => {
     await Budget.findOneAndUpdate(
         {
@@ -66,25 +71,30 @@ router.put("/:id", isSignedIn, async (req, res) => {
         }
     )
 
-    res.redirect("/budget");
+    res.redirect("/budget")
 })
 
 // GET: Show Budget Details
+
 router.get("/:id", isSignedIn, async (req, res) => {
 
     const budget = await Budget.findOne({
         _id: req.params.id,
         userId: req.session.user._id
-    });
+    })
 
     if (!budget) {
         return res.redirect("/budget")
     }
 
     const incomes = await Income.find({ budgetId: budget._id });
+
     const obligations = await Obligation.find({ budgetId: budget._id });
+
     const categories = await BudgetCategory.find({ budgetId: budget._id });
+
     const transactions = await Transaction.find({ budgetId: budget._id });
+
     const savingsGoals = await SavingsGoals.find({ budgetId: budget._id });
 
     const totalIncome = incomes.reduce((total, income) => total + income.amount, 0);
@@ -107,6 +117,7 @@ router.get("/:id", isSignedIn, async (req, res) => {
 });
 
 // DELETE: Delete a budget
+
 router.delete("/:id", isSignedIn, async (req, res) => {
     await Budget.findOneAndDelete({
         _id: req.params.id,

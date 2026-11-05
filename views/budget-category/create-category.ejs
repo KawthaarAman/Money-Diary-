@@ -1,12 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Category</title>
-   <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
 
     <main class="category-container">
@@ -18,29 +19,15 @@
             <form action="/budget-category/budget/<%= budget._id %>" method="POST">
 
                 <label for="name">Category Name</label>
-                <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    placeholder="e.g. Shopping"
-                    required
-                >
+                <input type="text" id="name" name="name" placeholder="e.g. Shopping" required>
 
                 <label for="allocatedAmount">Allocated Amount</label>
-                <input
-                    type="number"
-                    id="allocatedAmount"
-                    name="allocatedAmount"
-                    min="0"
-                    step="0.001"
-                    placeholder="0.000"
-                    required
-                >
+                <input type="number" id="allocatedAmount" name="allocatedAmount" min="0" step="0.001"
+                    placeholder="0.000" required>
 
                 <button type="submit">Create Category </button>
 
-                <a class="cancel-btn"
-                   href="/budget-category/budget/<%= budget._id %>">
+                <a class="cancel-btn" href="/budget-category/budget/<%= budget._id %>">
                     Cancel
                 </a>
 
@@ -49,4 +36,5 @@
     </main>
 
 </body>
+
 </html>
