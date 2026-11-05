@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Savings Goal | Money Diary</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/savings-goal.css">
+</head>
+
+<body>
+
+    <%- include('../partials/navbar.ejs') %>
+
+        <main class="goal-page">
+
+            <div class="goal-form-card">
+
+                <h1>Create a Savings Goal</h1>
+                <p class="goal-subtitle">A little saving today, a big achievement tomorrow.</p>
+
+                <form action="/savings-goal/budget/<%= budget._id %>" method="POST" enctype="multipart/form-data">
+
+                    <div class="form-group">
+                        <label for="name">Goal Name</label>
+                        <input type="text" id="name" name="name" placeholder="Example: Buy a new laptop" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="targetAmount">Target Amount</label>
+                        <input type="number" id="targetAmount" name="targetAmount" min="0" step="0.01"
+                            placeholder="Enter target amount" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="savedAmount">Already Saved</label>
+                        <input type="number" id="savedAmount" name="savedAmount" min="0" step="0.01" value="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="deadline">Deadline</label>
+                        <input type="date" id="deadline" name="deadline">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="photo">Goal Photo</label>
+                        <input type="file" id="photo" name="photo" accept="image/*">
+
+                        <small>Upload a picture that represents your goal.</small>
+                    </div>
+
+                    <div class="form-buttons">
+
+                        <button type="submit" class="btn btn-primary">
+                            Create Goal
+                        </button>
+
+                        <a href="/budget/<%= budget._id %>" class="btn btn-secondary">
+                            Cancel
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </main>
+
+</body>
+
+</html>

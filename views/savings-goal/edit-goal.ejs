@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Savings Goal | Money Diary</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/savings-goal.css">
+</head>
+
+<body>
+
+    <%- include('../partials/navbar.ejs') %>
+
+        <main class="goal-page">
+
+            <div class="goal-form-card">
+
+                <h1>Edit Savings Goal</h1>
+                <p class="goal-subtitle">Update your goal and keep moving forward.</p>
+
+                <form action="/savings-goal/<%= savingsGoal._id %>?_method=PUT" method="POST"
+                    enctype="multipart/form-data">
+
+                    <div class="form-group">
+                        <label for="name">Goal Name</label>
+                        <input type="text" id="name" name="name" value="<%= savingsGoal.name %>" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="targetAmount">Target Amount</label>
+                        <input type="number" id="targetAmount" name="targetAmount"
+                            value="<%= savingsGoal.targetAmount %>" min="0" step="0.01" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="savedAmount">Already Saved</label>
+                        <input type="number" id="savedAmount" name="savedAmount" value="<%= savingsGoal.savedAmount %>"
+                            min="0" step="0.01">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="deadline">Deadline</label>
+                        <input type="date" id="deadline" name="deadline"
+                            value="<%= savingsGoal.deadline ? new Date(savingsGoal.deadline).toISOString().split('T')[0] : '' %>">
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>Current Photo</label>
+
+                        <% if (savingsGoal.photo) { %>
+
+                            <div class="current-photo">
+                                <img src="<%= savingsGoal.photo %>" alt="<%= savingsGoal.name %>">
+                            </div>
+
+                            <% } else { %>
+
+                                <p>No photo uploaded yet.</p>
+
+                                <% } %>
+
+                                    <label for="photo">Choose a New Photo</label>
+
+                                    <input type="file" id="photo" name="photo" accept="image/*">
+
+                                    <small>Leave empty to keep your current photo.</small>
+
+                    </div>
+
+                    <div class="form-buttons">
+
+                        <button type="submit" class="btn btn-primary">
+                            Save Changes
+                        </button>
+
+                        <a href="/savings-goal/budget/<%= budget._id %>" class="btn btn-secondary">
+                            Cancel
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </main>
+
+</body>
+
+</html>
