@@ -66,6 +66,12 @@ app.use(
 
 app.use(passUserToView)
 
+// Get the current page URL
+app.use((req, res, next) => {
+  res.locals.currentPath = req.path
+  next()
+})
+
 // Routes go here
 
 app.use('/auth', authController)
@@ -81,13 +87,13 @@ app.use("/obligation", obligationRoutes);
 app.use("/budget-category", budgetCategoryRoutes);
 
 // connect to database and listen on Port 3000
-  async function startServer() {
-    const PORT = process.env.PORT || 3000;
-    await connectToDB();
+async function startServer() {
+  const PORT = process.env.PORT || 3000;
+  await connectToDB();
 
-    app.listen(PORT, () => {
-        console.log(`App is running on port ${PORT}`);
-    });
+  app.listen(PORT, () => {
+    console.log(`App is running on port ${PORT}`);
+  });
 }
 
 startServer();
