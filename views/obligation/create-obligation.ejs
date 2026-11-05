@@ -4,37 +4,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Obligation</title>
+    <title>Add Obligation | Money Diary</title>
+
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/obligation.css">
 </head>
 
 <body>
 
-    <main class="obligation-container">
-        <div class="obligation-card">
-            <h1>Add an Obligation </h1>
-            <p>Add a monthly payment or financial commitment.</p>
+    <%- include('../partials/navbar.ejs') %>
 
-            <form action="/obligation/budget/<%= budget._id %>" method="POST">
+        <main class="obligation-form-page">
 
-                <label for="name">Obligation Name</label>
-                <input type="text" id="name" name="name" placeholder="e.g. Car installment" required>
+            <div class="obligation-form-card">
 
-                <label for="amount">Amount</label>
-                <input type="number" id="amount" name="amount" min="0.001" step="0.001" placeholder="0.000" required>
+                <div class="obligation-form-icon">📋</div>
 
-                <label for="dueDate">Due Date</label>
-                <input type="date" id="dueDate" name="dueDate" required>
+                <h1>Add New Obligation</h1>
 
-                <button type="submit">Add Obligation </button>
+                <p class="obligation-description">
+                    Keep track of your monthly payments and commitments.
+                </p>
 
-                <a class="cancel-btn" href="/obligation/budget/<%= budget._id %>">
-                    Cancel
-                </a>
+                <form action="/obligation/budget/<%= budget._id %>" method="POST">
 
-            </form>
-        </div>
-    </main>
+                    <div class="form-group">
+                        <label for="name">Obligation Name</label>
+                        <input type="text" id="name" name="name" placeholder="e.g. Car Installment, Phone Bill"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="amount">Amount</label>
+                        <input type="number" id="amount" name="amount" placeholder="Enter amount" min="0" step="0.01"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dueDate">Due Date</label>
+                        <input type="date" id="dueDate" name="dueDate" required>
+                    </div>
+
+                    <div class="obligation-form-actions">
+                        <button type="submit" class="btn">
+                            Add Obligation
+                        </button>
+
+                        <a href="/obligation/budget/<%= budget._id %>" class="btn btn-secondary">
+                            Cancel
+                        </a>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </main>
 
 </body>
 
