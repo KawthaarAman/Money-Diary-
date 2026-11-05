@@ -4,41 +4,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Obligation</title>
+    <title>Edit Obligation | Money Diary</title>
+
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/obligation.css">
 </head>
 
 <body>
 
-    <main class="obligation-container">
-        <div class="obligation-card">
+    <%- include('../partials/navbar.ejs') %>
 
-            <h1>Edit Obligation </h1>
-            <p>Update your financial commitment.</p>
+        <main class="obligation-form-page">
 
-            <form action="/obligation/<%= obligation._id %>?_method=PUT" method="POST">
+            <div class="obligation-form-card">
 
-                <label for="name">Obligation Name</label>
-                <input type="text" id="name" name="name" value="<%= obligation.name %>" required>
+                <div class="obligation-form-icon">✎</div>
 
-                <label for="amount">Amount</label>
-                <input type="number" id="amount" name="amount" min="0.001" step="0.001" value="<%= obligation.amount %>"
-                    required>
+                <h1>Edit Obligation</h1>
 
-                <label for="dueDate">Due Date</label>
-                <input type="date" id="dueDate" name="dueDate"
-                    value="<%= new Date(obligation.dueDate).toISOString().slice(0, 10) %>" required>
+                <p class="obligation-description">
+                    Update your payment details below.
+                </p>
 
-                <button type="submit">Save Changes</button>
+                <form action="/obligation/<%= obligation._id %>?_method=PUT" method="POST">
 
-                <a class="cancel-btn" href="/obligation/budget/<%= budget._id %>">
-                    Cancel
-                </a>
+                    <div class="form-group">
+                        <label for="name">Obligation Name</label>
+                        <input type="text" id="name" name="name" value="<%= obligation.name %>" required>
+                    </div>
 
-            </form>
+                    <div class="form-group">
+                        <label for="amount">Amount</label>
+                        <input type="number" id="amount" name="amount" value="<%= obligation.amount %>" min="0"
+                            step="0.01" required>
+                    </div>
 
-        </div>
-    </main>
+                    <div class="form-group">
+                        <label for="dueDate">Due Date</label>
+                        <input type="date" id="dueDate" name="dueDate"
+                            value="<%= new Date(obligation.dueDate).toISOString().split('T')[0] %>" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="isPaid">Payment Status</label>
+
+                        <select id="isPaid" name="isPaid">
+                            <option value="false" <%=obligation.isPaid ? '' : 'selected' %>>
+                                Unpaid
+                            </option>
+
+                            <option value="true" <%=obligation.isPaid ? 'selected' : '' %>>
+                                Paid
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="obligation-form-actions">
+                        <button type="submit" class="btn">
+                            Save Changes
+                        </button>
+
+                        <a href="/obligation/budget/<%= budget._id %>" class="btn btn-secondary">
+                            Cancel
+                        </a>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </main>
 
 </body>
 
