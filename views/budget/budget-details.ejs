@@ -124,7 +124,9 @@
 
                 <div class="details-card">
                     <div class="details-card-icon">📝</div>
+
                     <h2>Transactions</h2>
+
                     <p>Record your purchases and track where your money goes.</p>
 
                     <div class="details-card-info">
@@ -135,7 +137,15 @@
                     </div>
 
                     <div class="details-card-actions">
-                        <span class="coming-soon">Coming soon</span>
+
+                        <a href="/transaction/budget/<%= budget._id %>" class="btn btn-secondary">
+                            View Transactions
+                        </a>
+
+                        <a href="/transaction/budget/<%= budget._id %>/new" class="btn btn-primary">
+                            + Add Transaction
+                        </a>
+
                     </div>
                 </div>
 
