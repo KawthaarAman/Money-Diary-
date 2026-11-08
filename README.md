@@ -104,7 +104,7 @@ The database consists of seven main models:
 
 ## Routes
 
-### Budget Routes
+### Budget Routes:
 
 | Method | Route | Description |
 |---|---|---|
@@ -116,7 +116,7 @@ The database consists of seven main models:
 | PUT | `/budget/:id` | Update budget |
 | DELETE | `/budget/:id` | Delete a budget |
 
-### Income Routes
+### Income Routes:
 
 | Method | Route | Description |
 |---|---|---|
@@ -127,7 +127,7 @@ The database consists of seven main models:
 | PUT | `/income/:id` | Update income |
 | DELETE | `/income/:id` | Delete income |
 
-### Obligation Routes
+### Obligation Routes:
 
 | Method | Route | Description |
 |---|---|---|
@@ -139,7 +139,7 @@ The database consists of seven main models:
 | PUT | `/obligation/:id/status` | Mark obligation as paid or unpaid |
 | DELETE | `/obligation/:id` | Delete obligation |
 
-### Budget Category Routes
+### Budget Category Routes:
 
 | Method | Route | Description |
 |---|---|---|
@@ -150,32 +150,80 @@ The database consists of seven main models:
 | PUT | `/budget-category/:id` | Update category |
 | DELETE | `/budget-category/:id` | Delete category |
 
+### Transaction Routes:
+
+| Method | Route | Description |
+|---|---|---|
+| GET | `/transaction/budget/:budgetId/new` | New transaction form |
+| POST | `/transaction/budget/:budgetId` | Create a new transaction with photo upload |
+| GET | `/transaction/budget/:budgetId` | Display all transactions for a budget |
+| GET | `/transaction/:id/edit` | Edit transaction form |
+| PUT | `/transaction/:id` | Update transaction with optional photo upload |
+| DELETE | `/transaction/:id` | Delete a transaction |
+
+### Savings Goals Routes:
+
+| Method | Route | Description |
+|---|---|---|
+| GET | `/savings-goal/budget/:budgetId/new` | New savings goal form |
+| POST | `/savings-goal/budget/:budgetId` | Create a new savings goal with photo upload |
+| GET | `/savings-goal/budget/:budgetId` | Display all savings goals for a budget |
+| GET | `/savings-goal/:id/edit` | Edit savings goal form |
+| PUT | `/savings-goal/:id` | Update savings goal with optional photo upload |
+| DELETE | `/savings-goal/:id` | Delete a savings goal |
+
+### Authentication Routes:
+
+| Method | Route | Description |
+|---|---|---|
+| GET | `/auth/sign-up` | Display sign-up form |
+| POST | `/auth/sign-up` | Register a new user |
+| GET | `/auth/sign-in` | Display sign-in form |
+| POST | `/auth/sign-in` | Authenticate user |
+| GET | `/auth/sign-out` | Sign out the current user |
+
+### Home Route:
+
+| Method | Route | Description |
+|---|---|---|
+| GET | `/` | Display the home page |
+
 ## Features
 
 - User registration and authentication.
 
+- Secure password hashing.
+- Monthly budget creation and management.
 - Monthly salary and additional income management.
-
 - Monthly financial obligations tracking.
-
+- Mark obligations as paid or unpaid.
 - Automatic remaining balance calculation.
-
 - Customizable budget categories.
-
 - Expense and purchase tracking.
-
 - Upload photos of purchased items.
-
 - Personal spending notes and mood tracking.
-
-- Savings goals and progress tracking.
-
+- Savings goals creation and management.
+- Upload photos for savings goals.
+- Set savings targets and deadlines.
+- Track savings progress.
 - Monthly financial summaries.
-
+- Organize financial records by monthly budget.
 - CRUD operations for financial records.
 
 ## Future Enhancements
 
+- Add budget notifications and payment reminders
+
+- Add search and filtering options for transactions.
+- Add the ability to set spending limits for each budget category.
+- Add interactive charts and graphs to visualize monthly income and expenses
+
 ## Credits
 
-## Screenshots
+Google Fonts – Fonts used in the website.
+
+## ScreenRecord 
+
+<video src="./Demo.mp4" controls width="100%"></video>
+
+
