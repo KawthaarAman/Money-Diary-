@@ -222,8 +222,35 @@ The database consists of seven main models:
 
 Google Fonts – Fonts used in the website.
 
-## ScreenRecord 
+## Screenshots
 
-<video src="Demo.mp4" controls width="100%"></video>
+![Dashboard](./images/image1.png)
+![Dashboard](./images/image2.png)
 
+![Sign up](./images/image3.png)
+![Sign In](./images/image4.png)
 
+![HomePage](./images/image5.png)
+
+![Create Budget](./images/image6.png)
+![All Budget](./images/image7.png)
+![Budget Details](./images/image8.png)
+![Budget Details](./images/image9.png)
+
+![Add Income](./images/image10.png)
+![All Incomes](./images/image11.png)
+![Edit Income](./images/image12.png)
+
+![Add Obligation](./images/image13.png)
+![All Obligations](./images/image14.png)
+![Edit Obligation](./images/image15.png)
+
+![Add Budget Category](./images/image16.png)
+![All Budget Categories](./images/image17.png)
+![Edit Budget Category](./images/image18.png)
+
+![Add Transaction](./images/image19.png)
+![All Transactions](./images/image20.png)
+
+![Create Savings Goal](./images/image21.png)
+![All Savings Goals](./images/image22.png)
