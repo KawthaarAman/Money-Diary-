@@ -224,6 +224,6 @@ Google Fonts – Fonts used in the website.
 
 ## ScreenRecord 
 
-<video src="./Demo.mp4" controls width="100%"></video>
+<video src="Demo.mp4" controls width="100%"></video>
 
 
