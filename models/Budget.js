@@ -18,16 +18,6 @@ const budgetSchema = new mongoose.Schema({
   }
 }, { timestamps: true });
 
-/* to prevent the same user from creating more than one budget for the same month and year.
-
-{ userId: 1, month: 1, year: 1 }
-
-These are the fields included in the index: 
-- userId: 1 → Sorts the index in ascending order by user ID.
-- month: 1 → Then by month.
-- year: 1 → Then by year.
-*/
-
 budgetSchema.index(
   { userId: 1, month: 1, year: 1 },
   { unique: true }
