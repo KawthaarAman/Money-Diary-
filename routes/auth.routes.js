@@ -6,47 +6,47 @@ const User = require("../models/User.js");
 
 const bcrypt = require("bcrypt");
 
-// Sign Up Routes
-
 router.get("/sign-up", (req, res) => {
     res.render("auth/sign-up.ejs");
 });
 
 router.post("/sign-up", async (req, res) => {
 
-    const userInDatabase = await User.findOne({
-        username: req.body.username
-    })
+    const { username, password, confirmPassword } = req.body;
+
+    if (password.length < 7) {
+        return res.send("Password must be at least 7 characters.");
+    }
+
+    if (password !== confirmPassword) {
+        return res.send("Password and Confirm Password must match.");
+    }
+
+    const userInDatabase = await User.findOne({ username });
 
     if (userInDatabase) {
-        return res.send("Username already taken.")
+        return res.send("Username already taken.");
     }
 
-    if (req.body.password !== req.body.confirmPassword) {
-        return res.send("Password and Confirm Password must match.")
-    }
+    const hashedPassword = bcrypt.hashSync(password, 10);
 
-    const hashedPassword = bcrypt.hashSync(req.body.password, 10)
-
-    const user = await User.create({
-        username: req.body.username,
+    await User.create({
+        username,
         password: hashedPassword
-    })
+    });
 
-    res.redirect("/auth/sign-in")
-})
-
-// Sign In Routes
+    res.redirect("/auth/sign-in");
+});
 
 router.get("/sign-in", (req, res) => {
-    res.render("auth/sign-in.ejs")
-})
+    res.render("auth/sign-in.ejs");
+});
 
 router.post("/sign-in", async (req, res) => {
 
     const userInDatabase = await User.findOne({
         username: req.body.username
-    })
+    });
 
     if (!userInDatabase) {
         return res.send("Login failed. Please try again.");
@@ -55,7 +55,7 @@ router.post("/sign-in", async (req, res) => {
     const validPassword = bcrypt.compareSync(
         req.body.password,
         userInDatabase.password
-    )
+    );
 
     if (!validPassword) {
         return res.send("Login failed. Please try again.");
@@ -64,17 +64,15 @@ router.post("/sign-in", async (req, res) => {
     req.session.user = {
         username: userInDatabase.username,
         _id: userInDatabase._id
-    }
+    };
 
-    res.redirect("/")
-})
-
-// Sign Out Route
+    res.redirect("/");
+});
 
 router.get("/sign-out", (req, res) => {
     req.session.destroy(() => {
-        res.redirect("/")
-    })
-})
+        res.redirect("/");
+    });
+});
 
 module.exports = router;
