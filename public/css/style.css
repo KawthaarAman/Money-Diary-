@@ -23,6 +23,11 @@ body {
     background: var(--cream);
     color: var(--dark);
     line-height: 1.6;
+    animation: fadeIn 0.7s ease-in-out;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 /* NAVBAR */
@@ -40,8 +45,6 @@ body {
     box-shadow: 0 2px 8px rgba(70, 81, 63, 0.05);
 }
 
-/* Logo */
-
 .navbar .logo {
     font-family: 'Playfair Display', serif;
     font-size: 27px;
@@ -50,8 +53,6 @@ body {
     text-decoration: none;
     white-space: nowrap;
 }
-
-/* Navigation links */
 
 .nav-links {
     display: flex;
@@ -65,14 +66,13 @@ body {
     text-decoration: none;
     font-size: 14px;
     font-weight: 600;
-    transition: 0.2s ease;
+    transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .nav-links a:hover {
     color: var(--soft-olive);
+    transform: translateY(-2px);
 }
-
-/* Active page */
 
 .nav-links a.active:not(.nav-button) {
     color: var(--olive);
@@ -80,8 +80,6 @@ body {
     border-bottom: 2px solid var(--soft-olive);
     padding-bottom: 5px;
 }
-
-/* Create Budget button */
 
 .nav-links .nav-button {
     background-color: var(--olive);
@@ -95,14 +93,12 @@ body {
     color: var(--white);
 }
 
-/* Active button */
-
 .nav-links .nav-button.active {
     background-color: var(--soft-olive);
     box-shadow: inset 0 0 0 2px var(--olive);
 }
 
-/* Page layout */
+/* PAGE LAYOUT */
 
 .container {
     width: 90%;
@@ -134,7 +130,7 @@ h3 {
     font-size: 20px;
 }
 
-/* Card Layout */
+/* CARD LAYOUT */
 
 .card-grid {
     display: grid;
@@ -148,7 +144,7 @@ h3 {
     border-radius: 14px;
     padding: 25px;
     box-shadow: 0 4px 15px rgba(70, 81, 63, 0.05);
-    transition: 0.2s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
@@ -176,13 +172,15 @@ button,
     font-weight: 600;
     text-decoration: none;
     cursor: pointer;
-    transition: 0.2s;
+    transition: all 0.25s ease;
 }
 
 button:hover,
 .btn:hover {
     background: var(--soft-olive);
     color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(70, 81, 63, 0.15);
 }
 
 .btn-secondary {
@@ -211,7 +209,7 @@ button:hover,
     margin-top: 20px;
 }
 
-/* Forms */
+/* FORMS */
 
 form {
     margin-top: 15px;
@@ -235,9 +233,10 @@ select:focus,
 textarea:focus {
     outline: none;
     border-color: var(--soft-olive);
+    box-shadow: 0 0 0 3px rgba(117, 129, 102, 0.12);
 }
 
-/* Tables */
+/* TABLES */
 
 .table-card {
     background: var(--white);
@@ -274,57 +273,24 @@ td {
     font-weight: 600;
 }
 
-/* RESPONSIVE DESIGN */
-
-@media (max-width: 650px) {
-
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .nav-links {
-        justify-content: flex-start;
-        flex-wrap: wrap;
-        gap: 15px;
-    }
-
-    .container {
-        width: 94%;
-        margin: 25px auto;
-    }
-
-    h1 {
-        font-size: 30px;
-    }
-
-    .card-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
 /* ANIMATIONS */
 
-/* Page Fade In */
 @keyframes fadeIn {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
 }
 
-body {
-    animation: fadeIn 0.7s ease-in-out;
-}
-
-/* Cards Slide Up */
 @keyframes slideUp {
     from {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -340,7 +306,6 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Card Hover */
 .details-card:hover,
 .summary-card:hover,
 .transaction-card:hover,
@@ -350,26 +315,8 @@ body {
     box-shadow: 0 12px 25px rgba(70, 81, 63, 0.12);
 }
 
-/* Button Hover */
-.btn {
-    transition: all 0.25s ease;
-}
+/* IMAGE HOVER */
 
-.btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 12px rgba(70, 81, 63, 0.15);
-}
-
-/* Navbar Hover */
-nav a {
-    transition: color 0.25s ease, transform 0.25s ease;
-}
-
-nav a:hover {
-    transform: translateY(-2px);
-}
-
-/* Image Hover */
 .goal-photo,
 .transaction-photo {
     transition: transform 0.35s ease;
@@ -377,17 +324,102 @@ nav a:hover {
 
 .goal-photo:hover,
 .transaction-photo:hover {
-    transform: scale(1.04);
+    transform: scale(1.02);
 }
 
-/* Respect reduced-motion preferences */
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 650px) {
+
+    .navbar {
+        min-height: auto;
+        padding: 15px 5%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .navbar .logo {
+        font-size: 24px;
+    }
+
+    .nav-links {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 12px 16px;
+    }
+
+    .nav-links a {
+        font-size: 12px;
+        white-space: nowrap;
+    }
+
+    .nav-links .nav-button {
+        padding: 9px 12px;
+        font-size: 12px;
+    }
+
+    .container {
+        width: 94%;
+        margin: 25px auto;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card,
+    .details-card {
+        padding: 18px;
+    }
+
+    .card-actions {
+        gap: 8px;
+    }
+
+    .card-actions .btn {
+        font-size: 12px;
+        padding: 9px 12px;
+    }
+
+    input,
+    select,
+    textarea {
+        font-size: 16px;
+    }
+
+    .table-card {
+        padding: 12px;
+    }
+
+}
+
+/* REDUCED MOTION */
 
 @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
+
 }
