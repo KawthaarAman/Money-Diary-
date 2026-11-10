@@ -9,7 +9,7 @@ const path = require("path");
 const isSignedIn = require("../middleware/is-signed-in");
 
 
-const Transaction = require("../models/Transaction");
+const Transaction = require("../models/transaction");
 
 const Budget = require("../models/Budget");
 

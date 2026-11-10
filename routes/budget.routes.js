@@ -10,7 +10,7 @@ const Obligation = require("../models/Obligation");
 
 const BudgetCategory = require("../models/BudgetCategory");
 
-const Transaction = require("../models/Transaction")
+const Transaction = require("../models/transaction")
 
 const SavingsGoals = require("../models/SavingsGoals");
 
